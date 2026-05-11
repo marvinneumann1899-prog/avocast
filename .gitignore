@@ -1,0 +1,26 @@
+# macOS
+.DS_Store
+
+# Data (not committed — see README for Kaggle source)
+data/*.csv
+data/*.zip
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# Build artefacts
+docs/report.html
+release/
+
+# Workspace-internal (Cloud OS state — not part of submission)
+CLAUDE.md
+STATE.md
+notes/
+canvas.yml
+assets/canvas.html
+docs/01-canvas.md

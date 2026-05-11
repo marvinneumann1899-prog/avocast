@@ -182,11 +182,11 @@ In rough priority order:
 
 # 10. Code repository
 
-The full project, Jupyter notebook, this report's source, decision log, sketches, and plots should be shared as a public GitHub repository before submission:
+The full project, Jupyter notebook, this report's source, decision log, sketches, and plots, is published as a public GitHub repository:
 
-> **GitHub:** `https://github.com/<USERNAME>/avocast` *(link to be added before submission)*
+> **GitHub:** <https://github.com/marvinneumann1899-prog/avocast>
 
-The repository contains: `notebooks/avocast.ipynb` (the Prophet build with all code, plots and inline markdown explanations), `docs/report.md` (this report's source), `assets/` (canvas, dashboard, plots, Trello), `decisions/` (decision log), and `requirements.txt` (Python dependencies). The dataset itself is *not* included in the repo, it is referenced via the Kaggle link in the references below.
+The repository contains `notebooks/avocast.ipynb` (the Prophet build with all code, plots and inline markdown explanations), `docs/report.md` (this report's source), `assets/` (canvas, dashboard, plots, Trello), `decisions/` (decision log), and `requirements.txt` (Python dependencies). The dataset itself is *not* included, it is referenced via the Kaggle link in the references below.
 
 # References
 

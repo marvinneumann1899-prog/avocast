@@ -30,7 +30,7 @@ I chose **SanDiego, conventional** as the working segment for the reasons given 
 
 This section describes the dataset numerically before any modelling, both at the full-dataset level and for the chosen segment.
 
-**Descriptive statistics, full dataset** (n = 18,249): mean \$1.41, std \$0.40, range \$0.44–\$3.25. The price distribution is right-skewed (skew = 0.58); kurtosis is mild (0.32), meaning extreme outliers are uncommon. The interquartile range is 0.56, half of all weekly prices fall in a 56-cent band.
+**Descriptive statistics, full dataset** (n = 18,249): mean \$1.41, std \$0.40, range \$0.44 to \$3.25. The price distribution is right-skewed (skew = 0.58); kurtosis is mild (0.32), meaning extreme outliers are uncommon. The interquartile range is 0.56, half of all weekly prices fall in a 56-cent band.
 
 | Type | Mean | Std | Min | Max |
 |---|---:|---:|---:|---:|
@@ -39,13 +39,13 @@ This section describes the dataset numerically before any modelling, both at the
 
 Organic carries a structural premium of roughly \$0.50 per unit and a wider variance, exactly the lifestyle/brand-driven pricing that motivated the choice of conventional for this prototype.
 
-**SanDiego conventional** (n = 169): mean \$1.06, std \$0.25, range \$0.61–\$1.83. The mean is below the conventional national mean (\$1.16), which makes sense, SanDiego is closer to Mexican supply, pushing the average down compared to inland regions. Skew of 0.99 indicates a clear right tail of expensive weeks (Q4 peaks). Volume mean ≈ 517,000 units/week with a large spread (270,942 to 917,661).
+**SanDiego conventional** (n = 169): mean \$1.06, std \$0.25, range \$0.61 to \$1.83. The mean is below the conventional national mean (\$1.16), which makes sense, SanDiego is closer to Mexican supply, pushing the average down compared to inland regions. Skew of 0.99 indicates a clear right tail of expensive weeks (Q4 peaks). Volume mean ≈ 517,000 units/week with a large spread (270,942 to 917,661).
 
-**Stationarity (Augmented Dickey-Fuller test):** ADF statistic = −3.84, **p-value = 0.0025** → reject the unit-root hypothesis at the 5 % level → the series is **technically stationary** over the 169-week window. This is mildly surprising given the visible upward trend in 2017–2018; the interpretation is that the trend is gradual enough across the 3-year window that ADF still rejects, but Prophet's piecewise-linear trend with change points still captures the structural shift better than a fully stationary model would.
+**Stationarity (Augmented Dickey-Fuller test):** ADF statistic = −3.84, **p-value = 0.0025** → reject the unit-root hypothesis at the 5 % level → the series is **technically stationary** over the 169-week window. This is mildly surprising given the visible upward trend in 2017 to 2018; the interpretation is that the trend is gradual enough across the 3-year window that ADF still rejects, but Prophet's piecewise-linear trend with change points still captures the structural shift better than a fully stationary model would.
 
 **Autocorrelation:** lag-1 = 0.84, lag-4 = 0.57, lag-8 = 0.39. Strong, slowly-decaying, last week's price is 84 % correlated with this week's; even at 8 weeks the correlation is still 0.39. The series carries genuine memory, which is exactly what makes a time-series model worth building over a naïve average.
 
-**Price–volume correlation:** Pearson r = **−0.75**. Strongly negative. When prices drop, volume jumps, consistent with the textbook law of demand, but also with the *retailer-promotion* effect that surfaces later in the holiday-effects analysis (the Super Bowl and Cinco de Mayo show negative price effects because retailers run aggressive promos to drive volume).
+**Price-volume correlation:** Pearson r = **−0.75**. Strongly negative. When prices drop, volume jumps, consistent with the textbook law of demand, but also with the *retailer-promotion* effect that surfaces later in the holiday-effects analysis (the Super Bowl and Cinco de Mayo show negative price effects because retailers run aggressive promos to drive volume).
 
 **Monthly mean prices, SanDiego conventional:**
 
@@ -124,7 +124,7 @@ A MAPE just under 20 % is mediocre against the rule-of-thumb that "below 10 % is
 
 ## 7.2 Errors
 
-The honest reason for the high MAPE is the test period itself: late 2017 / early 2018 saw a real U.S. price spike driven by California drought and tightening Mexican supply. Prophet, trained only on 2015 to mid-2017, has no way of knowing a supply event is about to happen. Looking at residuals on the test set, the largest errors cluster in late 2017, exactly where the shock landed. On more stable parts of the test window the model tracks closely. A fairer evaluation on an earlier window (e.g. all of 2017 H1) would likely give MAPE in the 8–12 % range.
+The honest reason for the high MAPE is the test period itself: late 2017 / early 2018 saw a real U.S. price spike driven by California drought and tightening Mexican supply. Prophet, trained only on 2015 to mid-2017, has no way of knowing a supply event is about to happen. Looking at residuals on the test set, the largest errors cluster in late 2017, exactly where the shock landed. On more stable parts of the test window the model tracks closely. A fairer evaluation on an earlier window (e.g. all of 2017 H1) would likely give MAPE in the 8 to 12 % range.
 
 The core honest framing for the business reader: the model is reliable for *normal* market conditions and degrades during shocks, which is the opposite of what most stakeholders intuitively expect from an AI-driven forecast.
 
@@ -147,7 +147,7 @@ A simple cross-check: training MAPE versus test MAPE shows no large gap; the 20 
 
 A forecast is only useful if it changes a decision. The components plot gives four signals that translate directly into retailer playbooks.
 
-1. **Plan promotions, not margin lifts, around Super Bowl and Cinco de Mayo.** The instinct is "high demand → raise price." The data shows the opposite: these are *promo windows* (price drops ~\$0.11 in those weeks). Order 2–3 weeks ahead, secure wholesale volume, run aggressive in-store pricing. The win is traffic and basket size, not margin per unit. Customers come in for guacamole and leave with chips, salsa, beer.
+1. **Plan promotions, not margin lifts, around Super Bowl and Cinco de Mayo.** The instinct is "high demand → raise price." The data shows the opposite: these are *promo windows* (price drops ~\$0.11 in those weeks). Order 2 to 3 weeks ahead, secure wholesale volume, run aggressive in-store pricing. The win is traffic and basket size, not margin per unit. Customers come in for guacamole and leave with chips, salsa, beer.
 2. **Treat Thanksgiving as the real margin window.** It is the only holiday with a clean positive price effect (+\$0.23). Customers buy avocados for sides and salads but it is not a guacamole-anchored holiday, so volume isn't there to justify deep discounts. Hold pricing closer to the seasonal trend and let the natural lift do the work.
 3. **Use the Christmas / New Year dip as a chosen promo window.** Mid-December to early January, prices drop ~\$0.20 and the holiday effect is essentially flat. Christmas isn't an avocado moment in the U.S. food calendar: that is the opportunity, not the problem. Run guacamole recipe cards, bundle with tortilla chips, push volume to fill the gap.
 4. **Use the forecast for supplier contracts, not just shelf decisions.** With a weekly price forecast, the buying team can negotiate fixed-price contracts with growers ahead of the peaks instead of buying at spot. Even at ~20 % MAPE in volatile periods (~10 % in stable ones), that is good enough to anchor a contract floor.

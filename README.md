@@ -65,9 +65,9 @@ pandoc report.md -o report.html \
 - **MAPE on 34-week hold-out:** 19.57 %
 - **MAE:** \$0.237 per avocado
 - **Holiday effects learned:** Thanksgiving **+\$0.23**, Christmas/NY **+\$0.04**, Super Bowl **−\$0.12**, Cinco de Mayo **−\$0.11** (the negatives reflect retailer promo behaviour, not lack of demand)
-- **Trend:** dipped to \$0.89 in Jan 2016, climbed steadily to \$1.41 by Mar 2018; 8 significant change points all clustered Nov 2015 – May 2016
+- **Trend:** dipped to \$0.89 in Jan 2016, climbed steadily to \$1.41 by Mar 2018; 8 significant change points all clustered Nov 2015 to May 2016
 - **Seasonality:** peak in October (\$1.33 monthly mean), trough in February (\$0.88)
-- **Price–volume correlation:** Pearson r = **−0.75** (textbook law of demand + promo-driven price drops)
+- **Price-volume correlation:** Pearson r = **−0.75** (textbook law of demand + promo-driven price drops)
 
 ## Data source
 
